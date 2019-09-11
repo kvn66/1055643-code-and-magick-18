@@ -17,6 +17,7 @@ gulp.task('server', function () {
     ui: false
   });
 
+  gulp.watch('*.html', gulp.series('refresh'));
   gulp.watch('js/**/*.js', gulp.series('refresh'));
 });
 
