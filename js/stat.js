@@ -17,8 +17,8 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 var renderText = function (text, ctx, x, y, color, font) {
-  color = typeof color !== 'undefined' ? color : '#000';
-  font = typeof font !== 'undefined' ? font : '16px "PT Mono"';
+  color = color || '#000';
+  font = font || '16px "PT Mono"';
   ctx.fillStyle = color;
   ctx.font = font;
   ctx.fillText(text, x, y);
