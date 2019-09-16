@@ -16,6 +16,27 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
+var renderText = function (text, ctx, x, y, color, font) {
+  color = typeof color !== 'undefined' ? color : '#000';
+  font = typeof font !== 'undefined' ? font : '16px "PT Mono"';
+  ctx.fillStyle = color;
+  ctx.font = font;
+  ctx.fillText(text, x, y);
+};
+
+var getBarColor = function (name) {
+  if (name === 'Вы') {
+    return 'rgba(255, 0, 0, 1)';
+  }
+  var saturation = Math.floor(Math.random() * MAX_SATURATION);
+  return 'hsl(240, ' + saturation.toString() + '%, 50%)';
+};
+
+var renderBar = function (ctx, x, y, width, height, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, width, height);
+};
+
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
 
@@ -35,12 +56,10 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
-  ctx.fillStyle = '#000';
-  ctx.font = '16px "PT Mono"';
-  ctx.fillText('Ура, вы победили!', headerX, headerY);
+  renderText('Ура, вы победили!', ctx, headerX, headerY);
 
   headerY += FONT_GAP;
-  ctx.fillText('Список результатов:', headerX, headerY);
+  renderText('Список результатов:', ctx, headerX, headerY);
 
   var maxTime = getMaxElement(times);
 
@@ -48,19 +67,11 @@ window.renderStatistics = function (ctx, names, times) {
   var barY = CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP;
 
   for (var i = 0; i < names.length; i++) {
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      var saturation = Math.floor(Math.random() * MAX_SATURATION);
-      ctx.fillStyle = 'hsl(240, ' + saturation.toString() + '%, 50%)';
-    }
-
     var barHeight = Math.floor((MAX_BAR_HEIGHT * times[i]) / maxTime);
-    ctx.fillRect(barX, barY, BAR_WIDTH, barHeight);
+    renderBar(ctx, barX, barY, BAR_WIDTH, barHeight, getBarColor(names[i]));
 
-    ctx.fillStyle = '#000';
-    ctx.fillText(Math.floor(times[i]).toString(), barX, barY + barHeight - GAP);
-    ctx.fillText(names[i], barX, CLOUD_Y + CLOUD_HEIGHT - GAP);
+    renderText(Math.floor(times[i]).toString(), ctx, barX, barY + barHeight - GAP);
+    renderText(names[i], ctx, barX, CLOUD_Y + CLOUD_HEIGHT - GAP);
 
     barX += BAR_GAP + BAR_WIDTH;
   }
