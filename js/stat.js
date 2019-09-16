@@ -52,7 +52,7 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       var saturation = Math.floor(Math.random() * MAX_SATURATION);
-      ctx.fillStyle = 'hsl(240, ' + saturation + '%, 50%)';
+      ctx.fillStyle = 'hsl(240, ' + saturation.toString() + '%, 50%)';
     }
 
     var barHeight = Math.floor((MAX_BAR_HEIGHT * times[i]) / maxTime);
