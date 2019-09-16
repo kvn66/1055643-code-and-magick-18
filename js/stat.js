@@ -45,17 +45,15 @@ var getMaxElement = function (arr) {
       maxElement = arr[i];
     }
   }
-
   return maxElement;
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  var headerX = CLOUD_X + GAP + GAP;
-  var headerY = CLOUD_Y + GAP + GAP + FONT_GAP;
-
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
+  var headerX = CLOUD_X + GAP + GAP;
+  var headerY = CLOUD_Y + GAP + GAP + FONT_GAP;
   renderText('Ура, вы победили!', ctx, headerX, headerY);
 
   headerY += FONT_GAP;
