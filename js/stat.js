@@ -53,9 +53,7 @@ window.renderStatistics = function (ctx, names, times) {
   var headerX = CLOUD_X + GAP + GAP;
   var headerY = CLOUD_Y + GAP + GAP + FONT_GAP;
   renderText('Ура, вы победили!', ctx, headerX, headerY);
-
-  headerY += FONT_GAP;
-  renderText('Список результатов:', ctx, headerX, headerY);
+  renderText('Список результатов:', ctx, headerX, headerY + FONT_GAP);
 
   var maxTime = getMaxElement(times);
 
