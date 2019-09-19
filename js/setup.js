@@ -1,14 +1,13 @@
 'use strict';
 
 var WIZARDS_COUNT = 4;
-var RANDOM_MULTIPLIER = 500;
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 var getRandomItem = function (array) {
-  return array[(Math.floor(Math.random() * RANDOM_MULTIPLIER)) % array.length];
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 var generateRandomWizard = function () {
