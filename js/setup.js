@@ -7,20 +7,20 @@ var WIZARD_SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла'
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var getRandomIndex = function (array) {
-  return (Math.floor(Math.random() * RANDOM_MULTIPLIER)) % array.length;
+var getRandomItem = function (array) {
+  return array[(Math.floor(Math.random() * RANDOM_MULTIPLIER)) % array.length];
 };
 
-var generateWizard = function () {
-  var wizard = {};
-  wizard.name = WIZARD_NAMES[getRandomIndex(WIZARD_NAMES)] + ' ' + WIZARD_SECOND_NAMES[getRandomIndex(WIZARD_SECOND_NAMES)];
-  wizard.coatColor = COAT_COLORS[getRandomIndex(COAT_COLORS)];
-  wizard.eyesColor = EYES_COLORS[getRandomIndex(EYES_COLORS)];
-  return wizard;
+var generateRandomWizard = function () {
+  return {
+    name: getRandomItem(WIZARD_NAMES) + ' ' + getRandomItem(WIZARD_SECOND_NAMES),
+    coatColor: getRandomItem(COAT_COLORS),
+    eyesColor: getRandomItem(EYES_COLORS)
+  };
 };
 
-var renderWizard = function () {
-  var wizard = generateWizard();
+var createRandomWizard = function () {
+  var wizard = generateRandomWizard();
 
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -37,7 +37,7 @@ var renderWizard = function () {
 var renderWizards = function () {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < WIZARDS_COUNT; i++) {
-    fragment.appendChild(renderWizard());
+    fragment.appendChild(createRandomWizard());
   }
   return fragment;
 };
