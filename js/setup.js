@@ -109,16 +109,16 @@ userNameInput.addEventListener('invalid', function () {
   }
 });
 
-var stopPropagation = function (evt) {
+var onInputFocused = function (evt) {
   evt.stopPropagation();
 };
 
 userNameInput.addEventListener('focus', function () {
-  userNameInput.addEventListener('keydown', stopPropagation);
+  userNameInput.addEventListener('keydown', onInputFocused);
 });
 
 userNameInput.addEventListener('blur', function () {
-  userNameInput.removeEventListener('keydown', stopPropagation);
+  userNameInput.removeEventListener('keydown', onInputFocused);
 });
 
 var setupWizard = setup.querySelector('.setup-wizard');
